@@ -32,7 +32,7 @@
         #modSearch {
             width: 100%; padding: 12px; border-radius: 8px;
             border: 2px solid #1e3a5f; background: #111b2d;
-            color: white; box-sizing: border-box;
+            color: white; box-sizing: border-box; font-size: 16px;
         }
 
         .section-title { 
@@ -62,20 +62,21 @@
         <h1>Bob Kelvin Site</h1>
         <div class="nav-links">
             <a href="#latest">Latest</a>
-            <a href="#legacy">Legacy</a>
-            <a href="#submit-section">Submit Mod</a> <a href="#contact">Contact</a>
+            <a href="#submit-section">Submit Mod</a> 
+            <a href="#community-vault">Community</a>
+            <a href="#contact">Contact</a>
         </div>
     </div>
 
     <div class="container">
 
         <div class="search-container">
-            <input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search mods...">
+            <input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search all mods (Official & Community)...">
         </div>
 
-        <div id="latest" class="section-title">Newest Releases</div>
+        <div id="latest" class="section-title">Official Releases</div>
         <div class="mod-card searchable">
-            <span style="font-weight:bold;">WR3D 2k26 DOPE V1 BY BOB KELVIN</span>
+            <span style="font-weight:bold; font-size: 16px;">WR3D 2k26 DOPE V1 BY BOB KELVIN</span>
             <p style="color:#b0c4de; font-size:13px;">The flagship mod. New rosters and 4K textures.</p>
             <a href="https://bobkel.blogspot.com/2026/03/wr3d-2k26-dope-v1-by-bob-kelvin.html" class="dl-btn" onclick="gtag('event', 'download', {'content_id': 'DOPE_V1'});">Download Latest</a>
         </div>
@@ -87,63 +88,13 @@
             <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
         </div>
 
-        <div class="section-title">Community Mod Log</div>
+        <div id="community-vault" class="section-title">Community Mod Vault</div>
         <div id="community-mods-container">
-            <p style="text-align:center; color:#ffd700; font-size: 14px;">Loading live mods...</p>
+            <p style="text-align:center; color:#ffd700; font-size: 14px;">📡 Syncing live mods...</p>
         </div>
 
-        <script>
-            // This script silently fetches your live Google Sheet data
-            const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
-            
-            fetch(sheetUrl)
-                .then(response => response.text())
-                .then(csvText => {
-                    const rows = csvText.split('\n');
-                    let html = '';
-                    
-                    // Loop through the sheet (skipping the top header row)
-                    for(let i = 1; i < rows.length; i++) {
-                        let row = rows[i];
-                        if(!row.trim()) continue; // Skip empty rows
-                        
-                        // Safely split the columns
-                        let cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                        
-                        // Assuming Column D (3) is Name and Column E (4) is Link
-                        if(cols.length >= 5) {
-                            let date = cols[2] ? cols[2].split(' ')[0].replace(/(^"|"$)/g, '') : "Recent";
-                            let modName = cols[3] ? cols[3].replace(/(^"|"$)/g, '').trim() : "Unknown Mod";
-                            let modLink = cols[4] ? cols[4].replace(/(^"|"$)/g, '').trim() : "#";
-                            
-                            // Build the HTML card for each mod
-                            html += `
-                            <div class="mod-card searchable" style="border-left: 4px solid #ffd700; position: relative;">
-                                <span style="font-weight:bold; color: #fff; font-size: 15px;">${modName}</span>
-                                <p style="color:#b0c4de; font-size:12px; margin-top: 5px;">
-                                    ⚡ Community Submission • Added: ${date}
-                                </p>
-                                <a href="${modLink}" target="_blank" class="dl-btn" style="margin-top: 15px;">Download Mod</a>
-                            </div>
-                            `;
-                        }
-                    }
-                    
-                    if(html === '') {
-                        html = '<p style="text-align:center; color:#b0c4de; font-size: 14px;">No community mods submitted yet. Be the first!</p>';
-                    }
-                    
-                    // Inject the cards into the website
-                    document.getElementById('community-mods-container').innerHTML = html;
-                })
-                .catch(error => {
-                    document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Failed to load mods.</p>';
-                });
-        </script>
-
-        <div id="legacy" class="section-title">Older Mods</div>
-        <div id="contact" class="section-title">Socials</div>
-        <div class="mod-card" style="background: #000;">
+        <div id="legacy" class="section-title">Socials</div>
+        <div id="contact" class="mod-card" style="background: #000;">
             <a href="https://youtube.com/@bob445" class="dl-btn" style="background:#ff0000; color:white;">YouTube</a>
             <a href="https://wa.me/2349133269825" class="dl-btn" style="background:#25D366; color:white;">WhatsApp</a>
         </div>
@@ -152,13 +103,50 @@
     </div>
 
     <script>
+        // FUNCTION TO SEARCH EVERYTHING ON THE PAGE
         function searchMods() {
             let input = document.getElementById('modSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable');
             for (let i = 0; i < cards.length; i++) {
+                // This checks if the search text matches the mod name
                 cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "block" : "none";
             }
         }
+
+        // AUTO-PILOT FETCH SCRIPT
+        const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
+        
+        fetch(sheetUrl)
+            .then(response => response.text())
+            .then(csvText => {
+                const rows = csvText.split('\n');
+                let html = '';
+                
+                // Starts at 1 to skip the header row (Submission ID, etc.)
+                for(let i = 1; i < rows.length; i++) {
+                    let row = rows[i];
+                    if(!row.trim()) continue;
+                    
+                    let cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    
+                    if(cols.length >= 5) {
+                        let modName = cols[3].replace(/(^"|"$)/g, '').trim();
+                        let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
+                        
+                        // Added 'searchable' class so the search bar can find these
+                        html += `
+                        <div class="mod-card searchable" style="border-left: 4px solid #ffd700; display: block; width: 100%; box-sizing: border-box;">
+                            <span style="font-weight:bold; color: #fff; font-size: 17px; display: block; margin-bottom: 12px;">${modName}</span>
+                            <a href="${modLink}" target="_blank" class="dl-btn">Download Community Mod</a>
+                        </div>
+                        `;
+                    }
+                }
+                document.getElementById('community-mods-container').innerHTML = html || '<p style="text-align:center; color:#b0c4de;">No mods in the vault yet.</p>';
+            })
+            .catch(err => {
+                document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Connection Error</p>';
+            });
     </script>
 </body>
 </html>
