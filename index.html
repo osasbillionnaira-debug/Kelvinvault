@@ -103,17 +103,14 @@
     </div>
 
     <script>
-        // FUNCTION TO SEARCH EVERYTHING ON THE PAGE
         function searchMods() {
             let input = document.getElementById('modSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable');
             for (let i = 0; i < cards.length; i++) {
-                // This checks if the search text matches the mod name
                 cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "block" : "none";
             }
         }
 
-        // AUTO-PILOT FETCH SCRIPT
         const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
         
         fetch(sheetUrl)
@@ -121,19 +118,13 @@
             .then(csvText => {
                 const rows = csvText.split('\n');
                 let html = '';
-                
-                // Starts at 1 to skip the header row (Submission ID, etc.)
                 for(let i = 1; i < rows.length; i++) {
                     let row = rows[i];
                     if(!row.trim()) continue;
-                    
                     let cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    
                     if(cols.length >= 5) {
                         let modName = cols[3].replace(/(^"|"$)/g, '').trim();
                         let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
-                        
-                        // Added 'searchable' class so the search bar can find these
                         html += `
                         <div class="mod-card searchable" style="border-left: 4px solid #ffd700; display: block; width: 100%; box-sizing: border-box;">
                             <span style="font-weight:bold; color: #fff; font-size: 17px; display: block; margin-bottom: 12px;">${modName}</span>
@@ -148,5 +139,8 @@
                 document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Connection Error</p>';
             });
     </script>
+
+    <script src="https://pl28869974.effectivegatecpm.com/8c/fe/d5/8cfed586479cba1111d640a02043ed5e.js"></script>
+
 </body>
 </html>
