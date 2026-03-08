@@ -23,14 +23,11 @@
         .section-title { border-left: 4px solid #ffd700; padding-left: 10px; margin: 30px 0 15px; color: #ffd700; text-transform: uppercase; font-size: 18px; }
         .mod-card { background: #111b2d; border: 1px solid #1e3a5f; border-radius: 12px; margin-bottom: 20px; padding: 15px; }
         
-        /* Updated Button Base Class */
-        .dl-btn { position: relative; display: flex; align-items: center; justify-content: center; background: #ffd700; color: #000; height: 44px; text-decoration: none; font-weight: bold; border-radius: 6px; text-transform: uppercase; font-size: 13px; margin-bottom: 8px; transition: 0.3s; overflow: hidden; }
+        .dl-btn { position: relative; display: flex; align-items: center; justify-content: center; background: #ffd700; color: #000; height: 44px; text-decoration: none; font-weight: bold; border-radius: 6px; text-transform: uppercase; font-size: 13px; margin-bottom: 8px; transition: 0.3s; overflow: hidden; cursor: pointer; border: none; width: 100%; }
         
-        /* Spinner Styles */
         .spinner { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.2); border-radius: 50%; border-top-color: #000; animation: spin 1s linear infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Timer Locked State */
         .dl-btn.counting { background: #555 !important; color: #fff !important; cursor: not-allowed; }
         .dl-btn.counting .spinner { display: inline-block; }
 
@@ -60,9 +57,8 @@
             <p style="color:#b0c4de; font-size:13px;">The flagship mod. New rosters and 4K textures.</p>
             
             <a href="https://bobkel.blogspot.com/2026/03/wr3d-2k26-dope-v1-by-bob-kelvin.html" 
-               id="mainDownload" 
                class="dl-btn" 
-               onclick="startDownloadTimer(event, this)">
+               onclick="startDownloadTimer(event, this, 'Download Latest')">
                 <div class="spinner"></div>
                 <span class="btn-text">Download Latest</span>
             </a>
@@ -90,12 +86,12 @@
     </div>
 
     <script>
-        // DOWNLOAD TIMER FUNCTION
-        function startDownloadTimer(event, element) {
+        // UPDATED TIMER FUNCTION (Works for any button)
+        function startDownloadTimer(event, element, originalText) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
             const downloadUrl = element.getAttribute('href');
-            let timeLeft = 10; // 10 seconds
+            let timeLeft = 10; 
 
             if (element.classList.contains('counting')) return;
 
@@ -103,28 +99,23 @@
             
             const timer = setInterval(() => {
                 timeLeft--;
-                btnText.innerText = `Generating Link... ${timeLeft}s`;
+                btnText.innerText = `Please wait... ${timeLeft}s`;
 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    btnText.innerText = "Redirecting...";
+                    btnText.innerText = "Opening...";
                     
-                    // Trigger GA Event
-                    gtag('event', 'download', {'content_id': 'DOPE_V1'});
-                    
-                    // Move to link
+                    gtag('event', 'download', {'content_id': originalText});
                     window.location.href = downloadUrl;
                     
-                    // Reset button if user comes back
                     setTimeout(() => {
                         element.classList.remove('counting');
-                        btnText.innerText = "Download Latest";
+                        btnText.innerText = originalText;
                     }, 5000);
                 }
             }, 1000);
         }
 
-        // SEARCH FUNCTION
         function searchMods() {
             let input = document.getElementById('modSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable');
@@ -133,7 +124,6 @@
             }
         }
 
-        // GOOGLE SHEETS SYNC
         const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
         
         fetch(sheetUrl)
@@ -148,10 +138,14 @@
                     if(cols.length >= 5) {
                         let modName = cols[3].replace(/(^"|"$)/g, '').trim();
                         let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
+                        // Updated community buttons to also use the timer
                         html += `
                         <div class="mod-card searchable" style="border-left: 4px solid #ffd700; display: block; width: 100%; box-sizing: border-box;">
                             <span style="font-weight:bold; color: #fff; font-size: 17px; display: block; margin-bottom: 12px;">${modName}</span>
-                            <a href="${modLink}" target="_blank" class="dl-btn">Download Community Mod</a>
+                            <a href="${modLink}" class="dl-btn" onclick="startDownloadTimer(event, this, 'Community Download')">
+                                <div class="spinner"></div>
+                                <span class="btn-text">Download Community Mod</span>
+                            </a>
                         </div>
                         `;
                     }
