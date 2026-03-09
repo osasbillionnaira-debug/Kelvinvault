@@ -32,6 +32,16 @@
         .champion-card { border: 2px solid var(--primary) !important; box-shadow: 0 0 15px var(--glow); animation: pulse-border 2s infinite; }
         @keyframes pulse-border { 0% { box-shadow: 0 0 5px var(--glow); } 50% { box-shadow: 0 0 20px var(--glow); } 100% { box-shadow: 0 0 5px var(--glow); } }
         
+        /* Service Grid */
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+        .service-tag { font-size: 9px; color: #fff; background: rgba(0, 255, 136, 0.1); padding: 5px; border-radius: 4px; border: 1px solid rgba(0, 255, 136, 0.3); text-align: center; font-weight: bold; }
+
+        /* Testimonials */
+        .testimonial-slider { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+        .testimonial-card { min-width: 80%; background: #0a1221; padding: 15px; border-radius: 12px; border: 1px solid var(--accent); scroll-snap-align: center; }
+        .t-user { color: var(--primary); font-weight: bold; font-size: 12px; margin-bottom: 5px; display: block; }
+        .t-text { font-style: italic; font-size: 11px; color: #b0c4de; line-height: 1.4; }
+
         .dl-btn { display: flex; align-items: center; justify-content: center; background: var(--primary); color: #000; height: 48px; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 13px; margin-top: 10px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
         .spinner { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.2); border-radius: 50%; border-top-color: #000; animation: spin 1s linear infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -79,18 +89,42 @@
             </div>
         </div>
 
+        <div class="section-title">User Reviews</div>
+        <div class="testimonial-slider">
+            <div class="testimonial-card">
+                <span class="t-user">@WR3DFan_NGR</span>
+                <p class="t-text">"Best 4K textures I've seen in the community. Bob Kelvin is a legend!"</p>
+            </div>
+            <div class="testimonial-card">
+                <span class="t-user">@GamerPro_234</span>
+                <p class="t-text">"The rosters are always updated. 10/10 service and mods."</p>
+            </div>
+            <div class="testimonial-card">
+                <span class="t-user">@ModHunter</span>
+                <p class="t-text">"Hired him for a custom arena and he delivered exactly what I wanted."</p>
+            </div>
+        </div>
+
         <div id="community-vault" class="section-title">Community Mod Vault <span id="v-count" style="font-size:10px; background:var(--accent); padding:2px 8px; border-radius:10px;">0 Mods</span></div>
         <div id="community-mods-container"><p style="text-align:center; color:var(--primary); font-size: 12px;">📡 Syncing with Database...</p></div>
 
-        <div class="section-title">Work with Bob Kelvin</div>
+        <div class="section-title">Hire for Projects</div>
         <div class="mod-card" style="border: 1px solid var(--success); background: rgba(0, 255, 136, 0.03);">
             <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 20px; margin-right: 10px;">💼</span>
-                <span style="font-weight: 900; color: var(--success); font-size: 14px;">HIRE FOR PROJECTS</span>
+                <span style="font-size: 20px; margin-right: 10px;">🛠️</span>
+                <span style="font-weight: 900; color: var(--success); font-size: 14px;">PREMIUM SERVICES</span>
             </div>
-            <p style="color: #b0c4de; font-size: 11px; margin: 0 0 15px 0;">Professional Video Editing, Web Development, and AI Content Creation.</p>
-            <a href="https://wa.me/2349133269825?text=Hello%20Bob,%20I%20want%20to%20hire%20you%20for%20a%20project" class="dl-btn" style="background: var(--success); color: #000; height: 40px; font-size: 12px;">
-                Send Business Inquiry
+            
+            <div class="service-grid">
+                <div class="service-tag">🎮 MOD CREATION</div>
+                <div class="service-tag">🎥 VIDEO EDITING</div>
+                <div class="service-tag">🌐 WEB DEV</div>
+                <div class="service-tag">🎨 AI DESIGN</div>
+            </div>
+
+            <p style="color: #b0c4de; font-size: 11px; margin: 0 0 15px 0;">Get custom WR3D mods, professional edits, or high-end web projects.</p>
+            <a href="https://wa.me/2349133269825?text=Hello%20Bob,%20I%20want%20to%20hire%20you%20for%20a%20Custom%20Project" class="dl-btn" style="background: var(--success); color: #000; height: 44px; font-size: 12px; font-weight: 900;">
+                BOOK A COMMISSION
             </a>
         </div>
 
@@ -120,7 +154,6 @@
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     btnText.innerText = "Redirecting...";
-                    // Sends Name + Link to the cool download page
                     window.location.href = `download.html?url=${encodeURIComponent(downloadUrl)}&name=${encodeURIComponent(originalText)}`;
                 }
             }, 1000);
