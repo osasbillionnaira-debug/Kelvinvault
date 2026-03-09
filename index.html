@@ -13,43 +13,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bob Kelvin | WR3D Mod Vault</title>
     <style>
-        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; }
+        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; --glow: rgba(255, 215, 0, 0.4); }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
         
         /* Header & Nav */
         .header { background: var(--accent); text-align: center; padding: 25px 10px; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .header h1 { margin: 0; font-size: 22px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
-        .nav-links { margin-top: 12px; font-size: 12px; }
-        .nav-links a { color: var(--primary); margin: 0 8px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+        .header h1 { margin: 0; font-size: 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links { margin-top: 12px; font-size: 11px; }
+        .nav-links a { color: var(--primary); margin: 0 8px; text-decoration: none; font-weight: bold; text-transform: uppercase; border: 1px solid var(--primary); padding: 4px 8px; border-radius: 4px; }
 
         .container { padding: 15px; max-width: 600px; margin: auto; }
 
         /* Search Bar */
         .search-container { margin: 20px 0; }
         #modSearch { width: 100%; padding: 14px; border-radius: 10px; border: 2px solid var(--accent); background: var(--card-bg); color: white; box-sizing: border-box; font-size: 16px; outline: none; transition: 0.3s; }
-        #modSearch:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+        #modSearch:focus { border-color: var(--primary); box-shadow: 0 0 10px var(--glow); }
 
         /* Section Titles */
-        .section-title { border-left: 4px solid var(--primary); padding-left: 12px; margin: 35px 0 15px; color: var(--primary); text-transform: uppercase; font-size: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .mod-count { font-size: 11px; background: var(--accent); padding: 2px 8px; border-radius: 20px; color: #fff; }
+        .section-title { border-left: 4px solid var(--primary); padding-left: 12px; margin: 35px 0 15px; color: var(--primary); text-transform: uppercase; font-size: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .mod-count { font-size: 10px; background: var(--accent); padding: 2px 8px; border-radius: 20px; color: #fff; }
 
         /* Cards & Buttons */
         .mod-card { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 15px; margin-bottom: 20px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; }
         .mod-card:hover { transform: translateY(-3px); border-color: var(--primary); }
         
-        .dl-btn { display: flex; align-items: center; justify-content: center; background: var(--primary); color: #000; height: 48px; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 14px; margin-top: 10px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
+        /* MOD OF THE MONTH SPECIAL STYLE */
+        .champion-card { border: 2px solid var(--primary) !important; box-shadow: 0 0 15px var(--glow); animation: pulse-border 2s infinite; background: linear-gradient(145deg, #111b2d, #1a2a44); }
+        @keyframes pulse-border { 0% { box-shadow: 0 0 5px var(--glow); } 50% { box-shadow: 0 0 20px var(--glow); } 100% { box-shadow: 0 0 5px var(--glow); } }
+
+        .dl-btn { display: flex; align-items: center; justify-content: center; background: var(--primary); color: #000; height: 48px; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 13px; margin-top: 10px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
         .dl-btn:active { transform: scale(0.97); }
 
-        /* Animation & Loading */
+        /* Back to Top */
+        #backToTop { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: bold; z-index: 1000; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+
         .spinner { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.2); border-radius: 50%; border-top-color: #000; animation: spin 1s linear infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .dl-btn.counting { background: #444 !important; color: #fff !important; cursor: not-allowed; }
         .dl-btn.counting .spinner { display: inline-block; }
 
-        /* Back to Top */
-        #backToTop { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: bold; z-index: 1000; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
-
-        .footer { text-align: center; color: #555; font-size: 11px; margin-top: 50px; padding: 20px; }
+        .footer { text-align: center; color: #555; font-size: 11px; margin-top: 50px; padding: 20px; border-top: 1px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -59,35 +62,35 @@
     <div class="header">
         <h1>BOB KELVIN VAULT</h1>
         <div class="nav-links">
-            <a href="#latest">MODS</a>
-            <a href="#submit-section">UPLOAD</a> 
-            <a href="#contact">SOCIAL</a>
+            <a href="#featured">FEATURED</a>
+            <a href="#community-vault">VAULT</a> 
+            <a href="#submit-section">UPLOAD</a>
         </div>
     </div>
 
     <div class="container">
         
         <div class="search-container">
-            <input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search WR3D Mods...">
+            <input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search mods by name or creator...">
         </div>
 
-        <div class="section-title">⭐ Featured Release</div>
-        <div class="mod-card searchable" style="border: 2px solid var(--primary); background: linear-gradient(to bottom, #111b2d, #1e3a5f);">
-            <div style="position: absolute; top: 10px; right: 10px; background: var(--primary); color: #000; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 5px;">TOP RATED</div>
+        <div id="featured" class="section-title">🏆 Mod of the Month</div>
+        <div class="mod-card champion-card searchable">
+            <div style="position: absolute; top: 10px; right: 10px; background: var(--primary); color: #000; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 5px;">MONTHLY CHAMPION</div>
             <span style="font-weight:900; font-size: 18px; color: var(--primary);">WR3D 2k26 DOPE V1</span>
-            <p style="color:#b0c4de; font-size:13px; line-height: 1.5;">The ultimate mod experience. 4K arena textures, updated 2026 rosters, and realistic physics.</p>
+            <p style="color:#b0c4de; font-size:13px; line-height: 1.5;">Selected for the best textures and smoothest gameplay in the community right now.</p>
             <a href="https://bobkel.blogspot.com/2026/03/wr3d-2k26-dope-v1-by-bob-kelvin.html" 
-               class="dl-btn" onclick="startDownloadTimer(event, this, 'Download Latest')">
-                <div class="spinner"></div><span class="btn-text">Download Master Mod</span>
+               class="dl-btn" onclick="startDownloadTimer(event, this, 'Mod of the Month')">
+                <div class="spinner"></div><span class="btn-text">Download Champion Mod</span>
             </a>
         </div>
 
-        <div id="submit-section" class="section-title">Upload Protocol</div>
-        <div class="mod-card" style="border: 2px dashed #ffd700; background: #0a1221; text-align: center;">
-            <p style="color: #ffd700; font-weight: bold; margin-bottom: 5px;">SUBMIT YOUR CREATION</p>
-            <p style="color: #b0c4de; font-size: 12px; margin-bottom: 20px;">Help grow the largest WR3D community vault.</p>
-            <a href="https://tally.so/r/ODPGrA" target="_blank" class="dl-btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
-                🚀 START UPLOAD PROCESS
+        <div id="submit-section" class="section-title">Submission Terminal</div>
+        <div class="mod-card" style="border: 2px dashed var(--primary); text-align: center; background: rgba(30, 58, 95, 0.2);">
+            <p style="color: var(--primary); font-weight: bold; margin-bottom: 5px; font-size: 14px;">UPLOAD YOUR WORK</p>
+            <p style="color: #b0c4de; font-size: 11px; margin-bottom: 15px;">Your mod could be the next Monthly Champion.</p>
+            <a href="https://tally.so/r/ODPGrA" target="_blank" class="dl-btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); height: 40px;">
+                🚀 START UPLOAD
             </a>
         </div>
 
@@ -100,7 +103,7 @@
         </div>
 
         <div id="contact" class="section-title">Connect</div>
-        <div class="mod-card" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="mod-card" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #000;">
             <a href="https://youtube.com/@bob445" class="dl-btn" style="background:#ff0000; color:white; margin:0;">YouTube</a>
             <a href="https://wa.me/2349133269825" class="dl-btn" style="background:#25D366; color:white; margin:0;">WhatsApp</a>
         </div>
@@ -111,12 +114,10 @@
     </div>
 
     <script>
-        // UX: Show/Hide Back to Top
         window.onscroll = function() {
             document.getElementById("backToTop").style.display = (window.scrollY > 300) ? "flex" : "none";
         };
 
-        // Professional Download Timer
         function startDownloadTimer(event, element, originalText) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
@@ -142,7 +143,6 @@
             }, 1000);
         }
 
-        // Search Engine
         function searchMods() {
             let input = document.getElementById('modSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable');
@@ -151,7 +151,6 @@
             }
         }
 
-        // Live Spreadsheet Sync
         const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
         
         fetch(sheetUrl).then(r => r.text()).then(csvText => {
@@ -175,7 +174,7 @@
                     </div>`;
                 }
             }
-            document.getElementById('community-mods-container').innerHTML = html || '<p style="text-align:center;">No mods found.</p>';
+            document.getElementById('community-mods-container').innerHTML = html || '<p style="text-align:center;">Vault empty.</p>';
             document.getElementById('v-count').innerText = `${count} Mods`;
         }).catch(() => {
             document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Sync Failed</p>';
