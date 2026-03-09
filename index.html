@@ -86,7 +86,6 @@
     </div>
 
     <script>
-        // UPDATED TIMER FUNCTION (Works for any button)
         function startDownloadTimer(event, element, originalText) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
@@ -138,7 +137,6 @@
                     if(cols.length >= 5) {
                         let modName = cols[3].replace(/(^"|"$)/g, '').trim();
                         let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
-                        // Updated community buttons to also use the timer
                         html += `
                         <div class="mod-card searchable" style="border-left: 4px solid #ffd700; display: block; width: 100%; box-sizing: border-box;">
                             <span style="font-weight:bold; color: #fff; font-size: 17px; display: block; margin-bottom: 12px;">${modName}</span>
@@ -156,7 +154,5 @@
                 document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Connection Error</p>';
             });
     </script>
-
-    <script src="https://pl28869974.effectivegatecpm.com/8c/fe/d5/8cfed586479cba1111d640a02043ed5e.js"></script>
 </body>
 </html>
