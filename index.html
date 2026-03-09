@@ -32,27 +32,14 @@
         .champion-card { border: 2px solid var(--primary) !important; box-shadow: 0 0 15px var(--glow); animation: pulse-border 2s infinite; }
         @keyframes pulse-border { 0% { box-shadow: 0 0 5px var(--glow); } 50% { box-shadow: 0 0 20px var(--glow); } 100% { box-shadow: 0 0 5px var(--glow); } }
         
-        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
-        .service-tag { font-size: 9px; color: #fff; background: rgba(0, 255, 136, 0.1); padding: 5px; border-radius: 4px; border: 1px solid rgba(0, 255, 136, 0.3); text-align: center; font-weight: bold; }
-
-        .testimonial-slider { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
-        .testimonial-card { min-width: 80%; background: #0a1221; padding: 15px; border-radius: 12px; border: 1px solid var(--accent); scroll-snap-align: center; }
-        .t-user { color: var(--primary); font-weight: bold; font-size: 12px; margin-bottom: 5px; display: block; }
-        .t-text { font-style: italic; font-size: 11px; color: #b0c4de; line-height: 1.4; }
-
         .dl-btn { display: flex; align-items: center; justify-content: center; background: var(--primary); color: #000; height: 48px; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 13px; margin-top: 10px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
         .spinner { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.2); border-radius: 50%; border-top-color: #000; animation: spin 1s linear infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .stat-box { background: var(--card-bg); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid var(--accent); }
-
-        #backToTop { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: bold; z-index: 1000; border: none; }
         .footer { text-align: center; color: #555; font-size: 11px; margin-top: 50px; padding: 20px; border-top: 1px solid var(--accent); }
     </style>
 </head>
 <body>
-    <button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
 
     <div class="header"><h1>BOB KELVIN VAULT</h1></div>
     
@@ -72,18 +59,12 @@
             </a>
         </div>
 
-        <div class="section-title">User Reviews</div>
-        <div class="testimonial-slider">
-            <div class="testimonial-card"><span class="t-user">@WR3DFan_NGR</span><p class="t-text">"Best 4K textures I've seen in the community!"</p></div>
-            <div class="testimonial-card"><span class="t-user">@GamerPro_234</span><p class="t-text">"The rosters are always updated. 10/10."</p></div>
-        </div>
-
         <div class="section-title">Share Your Work</div>
-        <div class="mod-card" style="border: 2px dashed var(--primary); background: rgba(255, 215, 0, 0.02); text-align: center; padding: 25px;">
-            <div style="font-size: 28px; margin-bottom: 8px;">📤</div>
-            <span style="font-weight:900; font-size: 15px; color: var(--primary);">UPLOAD YOUR MOD LINK</span>
-            <p style="color:#b0c4de; font-size: 11px; margin: 8px 0 15px 0;">Submit your MediaFire or Mega link via Tally to get featured!</p>
-            <a href="https://tally.so/r/n0X6zL" target="_blank" class="dl-btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); height: 44px;">
+        <div class="mod-card" style="border: 2px dashed var(--primary); text-align: center;">
+            <div style="font-size: 24px; margin-bottom: 10px;">📤</div>
+            <span style="font-weight:900; font-size: 14px; color: var(--primary);">UPLOAD YOUR MOD LINK</span>
+            <p style="color:#b0c4de; font-size: 11px; margin: 10px 0;">Send your MediaFire links via Tally to get added to the vault.</p>
+            <a href="https://tally.so/r/n0X6zL" target="_blank" class="dl-btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
                 SUBMIT MOD NOW
             </a>
         </div>
@@ -91,27 +72,10 @@
         <div id="community-vault" class="section-title">Community Mod Vault <span id="v-count" style="font-size:10px; background:var(--accent); padding:2px 8px; border-radius:10px;">0 Mods</span></div>
         <div id="community-mods-container"><p style="text-align:center; color:var(--primary); font-size: 12px;">📡 Syncing with Database...</p></div>
 
-        <div class="section-title">Work with Bob Kelvin</div>
-        <div class="mod-card" style="border: 1px solid var(--success); background: rgba(0, 255, 136, 0.03);">
-            <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 20px; margin-right: 10px;">🛠️</span>
-                <span style="font-weight: 900; color: var(--success); font-size: 14px;">PREMIUM SERVICES</span>
-            </div>
-            <div class="service-grid">
-                <div class="service-tag">🎮 MOD CREATION</div>
-                <div class="service-tag">🎥 VIDEO EDITING</div>
-            </div>
-            <a href="https://wa.me/2349133269825?text=Hello%20Bob,%20I%20want%20to%20hire%20you" class="dl-btn" style="background: var(--success); color: #000; height: 44px;">
-                BOOK A COMMISSION
-            </a>
-        </div>
-
         <div class="footer">DEVELOPED BY BOB KELVIN © 2026<br>Lagos, Nigeria</div>
     </div>
 
     <script>
-        window.onscroll = function() { document.getElementById("backToTop").style.display = (window.scrollY > 300) ? "flex" : "none"; };
-        
         function startDownloadTimer(event, element, originalText) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
@@ -138,6 +102,7 @@
             }
         }
 
+        // GOOGLE SHEETS SYNC
         const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
         fetch(sheetUrl).then(r => r.text()).then(csvText => {
             const rows = csvText.split('\n');
