@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bob Kelvin | WR3D Mod Vault</title>
     <style>
-        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; --success: #00ff88; }
+        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
         
         /* Header & Nav */
@@ -21,11 +21,6 @@
         .header h1 { margin: 0; font-size: 22px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
         .nav-links { margin-top: 12px; font-size: 12px; }
         .nav-links a { color: var(--primary); margin: 0 8px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
-
-        /* Ticker Added Back */
-        .ticker-wrap { background: var(--primary); color: #000; overflow: hidden; padding: 5px 0; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.1); }
-        .ticker-move { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         .container { padding: 15px; max-width: 600px; margin: auto; }
 
@@ -37,16 +32,6 @@
         /* Section Titles */
         .section-title { border-left: 4px solid var(--primary); padding-left: 12px; margin: 35px 0 15px; color: var(--primary); text-transform: uppercase; font-size: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
         .mod-count { font-size: 11px; background: var(--accent); padding: 2px 8px; border-radius: 20px; color: #fff; }
-
-        /* Stats Grid Added Back */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .stat-box { background: var(--card-bg); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid var(--accent); }
-
-        /* Testimonials Slider Added Back */
-        .testimonial-slider { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
-        .testimonial-card { min-width: 80%; background: #0a1221; padding: 15px; border-radius: 12px; border: 1px solid var(--accent); scroll-snap-align: center; }
-        .t-user { color: var(--primary); font-weight: bold; font-size: 12px; margin-bottom: 5px; display: block; }
-        .t-text { font-style: italic; font-size: 11px; color: #b0c4de; line-height: 1.4; }
 
         /* Cards & Buttons */
         .mod-card { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 15px; margin-bottom: 20px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; }
@@ -80,12 +65,6 @@
         </div>
     </div>
 
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            🚨 NEW RELEASE: WR3D 2k26 DOPE V1 IS NOW LIVE • JOIN THE WHATSAPP COMMUNITY FOR EXCLUSIVE MODS • SUBMIT YOUR OWN MODS TO BE FEATURED •
-        </div>
-    </div>
-
     <div class="container">
         
         <div class="search-container">
@@ -101,30 +80,6 @@
                class="dl-btn" onclick="startDownloadTimer(event, this, 'Download Latest')">
                 <div class="spinner"></div><span class="btn-text">Download Master Mod</span>
             </a>
-        </div>
-
-        <div class="section-title">Vault Statistics</div>
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div style="color: var(--primary); font-size: 18px; font-weight: 900;">1,000+</div>
-                <div style="color: #666; font-size: 9px; text-transform: uppercase;">Downloads</div>
-            </div>
-            <div class="stat-box">
-                <div id="live-status" style="color: var(--success); font-size: 18px; font-weight: 900;">ACTIVE</div>
-                <div style="color: #666; font-size: 9px; text-transform: uppercase;">Server Sync</div>
-            </div>
-        </div>
-
-        <div class="section-title">User Reviews</div>
-        <div class="testimonial-slider">
-            <div class="testimonial-card">
-                <span class="t-user">@WR3DFan_NGR</span>
-                <p class="t-text">"Best 4K textures I've seen in the community. Bob Kelvin is a legend!"</p>
-            </div>
-            <div class="testimonial-card">
-                <span class="t-user">@GamerPro_234</span>
-                <p class="t-text">"The rosters are always updated. 10/10 service and mods."</p>
-            </div>
         </div>
 
         <div id="submit-section" class="section-title">Upload Protocol</div>
