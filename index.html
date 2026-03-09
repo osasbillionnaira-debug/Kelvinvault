@@ -12,53 +12,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bob Kelvin | WR3D Mod Vault</title>
     <style>
-        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; --glow: rgba(255, 215, 0, 0.4); }
+        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; --glow: rgba(255, 215, 0, 0.4); --success: #00ff88; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
+        
+        /* Header & Ticker */
         .header { background: var(--accent); text-align: center; padding: 25px 10px; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; }
         .header h1 { margin: 0; font-size: 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
-        .nav-links { margin-top: 12px; font-size: 11px; }
-        .nav-links a { color: var(--primary); margin: 0 8px; text-decoration: none; font-weight: bold; text-transform: uppercase; border: 1px solid var(--primary); padding: 4px 8px; border-radius: 4px; }
+        .ticker-wrap { background: var(--primary); color: #000; overflow: hidden; padding: 5px 0; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .ticker-move { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
         .container { padding: 15px; max-width: 600px; margin: auto; }
         .search-container { margin: 20px 0; }
         #modSearch { width: 100%; padding: 14px; border-radius: 10px; border: 2px solid var(--accent); background: var(--card-bg); color: white; box-sizing: border-box; font-size: 16px; outline: none; }
-        .section-title { border-left: 4px solid var(--primary); padding-left: 12px; margin: 35px 0 15px; color: var(--primary); text-transform: uppercase; font-size: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        
+        .section-title { border-left: 4px solid var(--primary); padding-left: 12px; margin: 35px 0 15px; color: var(--primary); text-transform: uppercase; font-size: 14px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        
         .mod-card { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 15px; margin-bottom: 20px; padding: 20px; transition: 0.3s; position: relative; }
         .champion-card { border: 2px solid var(--primary) !important; box-shadow: 0 0 15px var(--glow); animation: pulse-border 2s infinite; }
         @keyframes pulse-border { 0% { box-shadow: 0 0 5px var(--glow); } 50% { box-shadow: 0 0 20px var(--glow); } 100% { box-shadow: 0 0 5px var(--glow); } }
+        
         .dl-btn { display: flex; align-items: center; justify-content: center; background: var(--primary); color: #000; height: 48px; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 13px; margin-top: 10px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
         .spinner { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.2); border-radius: 50%; border-top-color: #000; animation: spin 1s linear infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .dl-btn.counting { background: #444 !important; color: #fff !important; cursor: not-allowed; }
-        .dl-btn.counting .spinner { display: inline-block; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .stat-box { background: var(--card-bg); padding: 15px; border-radius: 12px; text-align: center; border: 1px solid var(--accent); }
+
         #backToTop { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: bold; z-index: 1000; border: none; }
         .footer { text-align: center; color: #555; font-size: 11px; margin-top: 50px; padding: 20px; border-top: 1px solid var(--accent); }
     </style>
 </head>
 <body>
+
     <button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
+
     <div class="header"><h1>BOB KELVIN VAULT</h1></div>
+    
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            🚨 NEW RELEASE: WR3D 2k26 DOPE V1 IS NOW LIVE • JOIN THE WHATSAPP COMMUNITY FOR EXCLUSIVE MODS • SUBMIT YOUR OWN MODS TO BE FEATURED • BOB KELVIN YOUTUBE CHANNEL HITTING NEW MILESTONES •
+        </div>
+    </div>
+
     <div class="container">
         <div class="search-container"><input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search mods..."></div>
+
         <div class="section-title">🏆 Mod of the Month</div>
         <div class="mod-card champion-card searchable">
             <span style="font-weight:900; font-size: 18px; color: var(--primary);">WR3D 2k26 DOPE V1</span>
             <p style="color:#b0c4de; font-size:13px;">Selected for top-tier 4K textures and rosters.</p>
-            <a href="https://bobkel.blogspot.com/2026/03/wr3d-2k26-dope-v1-by-bob-kelvin.html" class="dl-btn" onclick="startDownloadTimer(event, this, 'Master Mod')">
+            <a href="https://bobkel.blogspot.com/2026/03/wr3d-2k26-dope-v1-by-bob-kelvin.html" class="dl-btn" onclick="startDownloadTimer(event, this, 'WR3D 2k26 DOPE V1')">
                 <div class="spinner"></div><span class="btn-text">Download Champion Mod</span>
             </a>
         </div>
+
+        <div class="section-title">Vault Statistics</div>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div style="color: var(--primary); font-size: 18px; font-weight: 900;">1,000+</div>
+                <div style="color: #666; font-size: 9px; text-transform: uppercase;">Downloads</div>
+            </div>
+            <div class="stat-box">
+                <div id="live-status" style="color: var(--success); font-size: 18px; font-weight: 900;">ACTIVE</div>
+                <div style="color: #666; font-size: 9px; text-transform: uppercase;">Server Sync</div>
+            </div>
+        </div>
+
         <div id="community-vault" class="section-title">Community Mod Vault <span id="v-count" style="font-size:10px; background:var(--accent); padding:2px 8px; border-radius:10px;">0 Mods</span></div>
-        <div id="community-mods-container"><p style="text-align:center; color:var(--primary);">📡 Syncing...</p></div>
+        <div id="community-mods-container"><p style="text-align:center; color:var(--primary); font-size: 12px;">📡 Syncing with Database...</p></div>
+
+        <div class="section-title">Work with Bob Kelvin</div>
+        <div class="mod-card" style="border: 1px solid var(--success); background: rgba(0, 255, 136, 0.03);">
+            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 20px; margin-right: 10px;">💼</span>
+                <span style="font-weight: 900; color: var(--success); font-size: 14px;">HIRE FOR PROJECTS</span>
+            </div>
+            <p style="color: #b0c4de; font-size: 11px; margin: 0 0 15px 0;">Professional Video Editing, Web Development, and AI Content Creation.</p>
+            <a href="https://wa.me/2349133269825?text=Hello%20Bob,%20I%20want%20to%20hire%20you%20for%20a%20project" class="dl-btn" style="background: var(--success); color: #000; height: 40px; font-size: 12px;">
+                Send Business Inquiry
+            </a>
+        </div>
+
         <div class="section-title">Connect</div>
         <div class="mod-card" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #000;">
             <a href="https://youtube.com/@bob445" class="dl-btn" style="background:#ff0000; color:white; margin:0;">YouTube</a>
             <a href="https://wa.me/2349133269825" class="dl-btn" style="background:#25D366; color:white; margin:0;">WhatsApp</a>
         </div>
-        <div class="footer">DEVELOPED BY BOB KELVIN © 2026</div>
+
+        <div class="footer">DEVELOPED BY BOB KELVIN © 2026<br>Lagos, Nigeria</div>
     </div>
 
     <script>
         window.onscroll = function() { document.getElementById("backToTop").style.display = (window.scrollY > 300) ? "flex" : "none"; };
+        
         function startDownloadTimer(event, element, originalText) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
@@ -66,17 +113,19 @@
             let timeLeft = 10; 
             if (element.classList.contains('counting')) return;
             element.classList.add('counting');
+            
             const timer = setInterval(() => {
                 timeLeft--;
                 btnText.innerText = `Preparing... ${timeLeft}s`;
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     btnText.innerText = "Redirecting...";
-                    // REDIRECT TO THE SECOND PAGE
-                    window.location.href = `download.html?url=${encodeURIComponent(downloadUrl)}`;
+                    // Sends Name + Link to the cool download page
+                    window.location.href = `download.html?url=${encodeURIComponent(downloadUrl)}&name=${encodeURIComponent(originalText)}`;
                 }
             }, 1000);
         }
+
         function searchMods() {
             let input = document.getElementById('modSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable');
@@ -84,6 +133,7 @@
                 cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "block" : "none";
             }
         }
+
         const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
         fetch(sheetUrl).then(r => r.text()).then(csvText => {
             const rows = csvText.split('\n');
@@ -97,12 +147,12 @@
                     let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
                     html += `<div class="mod-card searchable" style="border-left: 4px solid var(--primary);">
                         <span style="font-weight:bold; color: #fff;">${modName}</span>
-                        <a href="${modLink}" class="dl-btn" onclick="startDownloadTimer(event, this, 'Community Download')">
+                        <a href="${modLink}" class="dl-btn" onclick="startDownloadTimer(event, this, '${modName}')">
                             <div class="spinner"></div><span class="btn-text">Download Mod</span>
                         </a></div>`;
                 }
             }
-            document.getElementById('community-mods-container').innerHTML = html;
+            document.getElementById('community-mods-container').innerHTML = html || '<p style="text-align:center;">No mods in vault.</p>';
             document.getElementById('v-count').innerText = `${count} Mods`;
         });
     </script>
