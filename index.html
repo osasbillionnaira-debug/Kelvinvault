@@ -15,9 +15,9 @@
         :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; --glow: rgba(255, 215, 0, 0.4); --success: #00ff88; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
         
-        /* Header & Ticker */
         .header { background: var(--accent); text-align: center; padding: 25px 10px; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; }
         .header h1 { margin: 0; font-size: 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+        
         .ticker-wrap { background: var(--primary); color: #000; overflow: hidden; padding: 5px 0; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.1); }
         .ticker-move { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -32,11 +32,9 @@
         .champion-card { border: 2px solid var(--primary) !important; box-shadow: 0 0 15px var(--glow); animation: pulse-border 2s infinite; }
         @keyframes pulse-border { 0% { box-shadow: 0 0 5px var(--glow); } 50% { box-shadow: 0 0 20px var(--glow); } 100% { box-shadow: 0 0 5px var(--glow); } }
         
-        /* Service Grid */
         .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
         .service-tag { font-size: 9px; color: #fff; background: rgba(0, 255, 136, 0.1); padding: 5px; border-radius: 4px; border: 1px solid rgba(0, 255, 136, 0.3); text-align: center; font-weight: bold; }
 
-        /* Testimonials */
         .testimonial-slider { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 10px; scroll-snap-type: x mandatory; }
         .testimonial-card { min-width: 80%; background: #0a1221; padding: 15px; border-radius: 12px; border: 1px solid var(--accent); scroll-snap-align: center; }
         .t-user { color: var(--primary); font-weight: bold; font-size: 12px; margin-bottom: 5px; display: block; }
@@ -54,15 +52,12 @@
     </style>
 </head>
 <body>
-
     <button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
 
     <div class="header"><h1>BOB KELVIN VAULT</h1></div>
     
     <div class="ticker-wrap">
-        <div class="ticker-move">
-            🚨 NEW RELEASE: WR3D 2k26 DOPE V1 IS NOW LIVE • JOIN THE WHATSAPP COMMUNITY FOR EXCLUSIVE MODS • SUBMIT YOUR OWN MODS TO BE FEATURED • BOB KELVIN YOUTUBE CHANNEL HITTING NEW MILESTONES •
-        </div>
+        <div class="ticker-move">🚨 NEW RELEASE: WR3D 2k26 DOPE V1 IS NOW LIVE • JOIN THE WHATSAPP COMMUNITY • SUBMIT YOUR OWN MODS •</div>
     </div>
 
     <div class="container">
@@ -77,42 +72,18 @@
             </a>
         </div>
 
-        <div class="section-title">Vault Statistics</div>
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div style="color: var(--primary); font-size: 18px; font-weight: 900;">1,000+</div>
-                <div style="color: #666; font-size: 9px; text-transform: uppercase;">Downloads</div>
-            </div>
-            <div class="stat-box">
-                <div id="live-status" style="color: var(--success); font-size: 18px; font-weight: 900;">ACTIVE</div>
-                <div style="color: #666; font-size: 9px; text-transform: uppercase;">Server Sync</div>
-            </div>
-        </div>
-
         <div class="section-title">User Reviews</div>
         <div class="testimonial-slider">
-            <div class="testimonial-card">
-                <span class="t-user">@WR3DFan_NGR</span>
-                <p class="t-text">"Best 4K textures I've seen in the community. Bob Kelvin is a legend!"</p>
-            </div>
-            <div class="testimonial-card">
-                <span class="t-user">@GamerPro_234</span>
-                <p class="t-text">"The rosters are always updated. 10/10 service and mods."</p>
-            </div>
-            <div class="testimonial-card">
-                <span class="t-user">@ModHunter</span>
-                <p class="t-text">"Hired him for a custom arena and he delivered exactly what I wanted."</p>
-            </div>
+            <div class="testimonial-card"><span class="t-user">@WR3DFan_NGR</span><p class="t-text">"Best 4K textures I've seen in the community!"</p></div>
+            <div class="testimonial-card"><span class="t-user">@GamerPro_234</span><p class="t-text">"The rosters are always updated. 10/10."</p></div>
         </div>
 
         <div class="section-title">Share Your Work</div>
         <div class="mod-card" style="border: 2px dashed var(--primary); background: rgba(255, 215, 0, 0.02); text-align: center; padding: 25px;">
             <div style="font-size: 28px; margin-bottom: 8px;">📤</div>
-            <span style="font-weight:900; font-size: 15px; color: var(--primary); letter-spacing: 1px;">UPLOAD YOUR MOD LINK</span>
-            <p style="color:#b0c4de; font-size: 11px; margin: 8px 0 15px 0; line-height: 1.5;">
-                Submit your MediaFire or Mega link to get your creation featured in the Vault!
-            </p>
-            <a href="https://tally.so/r/n0X6zL" target="_blank" class="dl-btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); height: 44px; font-size: 12px; font-weight: 900;">
+            <span style="font-weight:900; font-size: 15px; color: var(--primary);">UPLOAD YOUR MOD LINK</span>
+            <p style="color:#b0c4de; font-size: 11px; margin: 8px 0 15px 0;">Submit your MediaFire or Mega link via Tally to get featured!</p>
+            <a href="https://tally.so/r/n0X6zL" target="_blank" class="dl-btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); height: 44px;">
                 SUBMIT MOD NOW
             </a>
         </div>
@@ -120,30 +91,19 @@
         <div id="community-vault" class="section-title">Community Mod Vault <span id="v-count" style="font-size:10px; background:var(--accent); padding:2px 8px; border-radius:10px;">0 Mods</span></div>
         <div id="community-mods-container"><p style="text-align:center; color:var(--primary); font-size: 12px;">📡 Syncing with Database...</p></div>
 
-        <div class="section-title">Hire for Projects</div>
+        <div class="section-title">Work with Bob Kelvin</div>
         <div class="mod-card" style="border: 1px solid var(--success); background: rgba(0, 255, 136, 0.03);">
             <div style="display: flex; align-items: center; margin-bottom: 8px;">
                 <span style="font-size: 20px; margin-right: 10px;">🛠️</span>
                 <span style="font-weight: 900; color: var(--success); font-size: 14px;">PREMIUM SERVICES</span>
             </div>
-            
             <div class="service-grid">
                 <div class="service-tag">🎮 MOD CREATION</div>
                 <div class="service-tag">🎥 VIDEO EDITING</div>
-                <div class="service-tag">🌐 WEB DEV</div>
-                <div class="service-tag">🎨 AI DESIGN</div>
             </div>
-
-            <p style="color: #b0c4de; font-size: 11px; margin: 0 0 15px 0;">Get custom WR3D mods, professional edits, or high-end web projects.</p>
-            <a href="https://wa.me/2349133269825?text=Hello%20Bob,%20I%20want%20to%20hire%20you%20for%20a%20Custom%20Project" class="dl-btn" style="background: var(--success); color: #000; height: 44px; font-size: 12px; font-weight: 900;">
+            <a href="https://wa.me/2349133269825?text=Hello%20Bob,%20I%20want%20to%20hire%20you" class="dl-btn" style="background: var(--success); color: #000; height: 44px;">
                 BOOK A COMMISSION
             </a>
-        </div>
-
-        <div class="section-title">Connect</div>
-        <div class="mod-card" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #000;">
-            <a href="https://youtube.com/@bob445" class="dl-btn" style="background:#ff0000; color:white; margin:0;">YouTube</a>
-            <a href="https://wa.me/2349133269825" class="dl-btn" style="background:#25D366; color:white; margin:0;">WhatsApp</a>
         </div>
 
         <div class="footer">DEVELOPED BY BOB KELVIN © 2026<br>Lagos, Nigeria</div>
@@ -159,7 +119,6 @@
             let timeLeft = 10; 
             if (element.classList.contains('counting')) return;
             element.classList.add('counting');
-            
             const timer = setInterval(() => {
                 timeLeft--;
                 btnText.innerText = `Preparing... ${timeLeft}s`;
