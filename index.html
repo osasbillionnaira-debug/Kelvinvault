@@ -16,8 +16,18 @@
         :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
         
-        .header { background: var(--accent); text-align: center; padding: 25px 10px; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .header h1 { margin: 0; font-size: 22px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+        /* Updated Header with Logo Support */
+        .header { background: var(--accent); text-align: center; padding: 20px 10px; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        
+        .site-logo { 
+            display: block; 
+            margin: 0 auto 10px auto; 
+            max-width: 70px; /* Adjust size as you like */
+            height: auto; 
+            filter: drop-shadow(0 0 8px var(--primary)); /* Professional Gold Glow */
+        }
+
+        .header h1 { margin: 0; font-size: 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
         .nav-links { margin-top: 12px; font-size: 12px; }
         .nav-links a { color: var(--primary); margin: 0 8px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
 
@@ -51,6 +61,7 @@
     <button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
 
     <div class="header">
+        <img src="logo.png" alt="Logo" class="site-logo">
         <h1>BOB KELVIN VAULT</h1>
         <div class="nav-links">
             <a href="#latest">MODS</a>
@@ -109,7 +120,6 @@
             document.getElementById("backToTop").style.display = (window.scrollY > 300) ? "flex" : "none";
         };
 
-        // NEW REDIRECT LOGIC
         function startDownloadTimer(event, element, modName) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
@@ -124,7 +134,6 @@
                 btnText.innerText = `Preparing... ${timeLeft}s`;
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    // This sends the data to your download.html file
                     window.location.href = `download.html?url=${encodeURIComponent(downloadUrl)}&name=${encodeURIComponent(modName)}`;
                 }
             }, 1000);
