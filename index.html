@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DPCXMYVGX"></script> 
     <script> 
@@ -9,43 +9,47 @@
       gtag('config', 'G-3DPCXMYVGX'); 
     </script>
 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bob Kelvin | WR3D Mod Vault</title>
     <style>
-        body { background: #050a14; color: white; font-family: 'Arial', sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
-        .header { background: #1e3a5f; text-align: center; padding: 30px 10px; border-bottom: 3px solid #ffd700; position: sticky; top: 0; z-index: 100; }
-        .header h1 { margin: 0; font-size: 24px; color: #ffd700; text-transform: uppercase; }
-        .nav-links { margin-top: 15px; font-size: 13px; }
-        .nav-links a { color: #ffd700; margin: 0 10px; text-decoration: none; border-bottom: 1px solid #ffd700; }
+        :root { --primary: #ffd700; --bg: #050a14; --card-bg: #111b2d; --accent: #1e3a5f; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding-bottom: 50px; scroll-behavior: smooth; }
+        
+        /* Header & Nav */
+        .header { background: var(--accent); text-align: center; padding: 25px 10px; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .header h1 { margin: 0; font-size: 22px; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links { margin-top: 12px; font-size: 12px; }
+        .nav-links a { color: var(--primary); margin: 0 8px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+
         .container { padding: 15px; max-width: 600px; margin: auto; }
-        
-        /* NEW: Fade-in Animation */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .searchable { animation: fadeIn 0.5s ease forwards; }
 
+        /* Search Bar */
         .search-container { margin: 20px 0; }
-        #modSearch { width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #1e3a5f; background: #111b2d; color: white; box-sizing: border-box; font-size: 16px; outline: none; }
-        #modSearch:focus { border-color: #ffd700; }
+        #modSearch { width: 100%; padding: 14px; border-radius: 10px; border: 2px solid var(--accent); background: var(--card-bg); color: white; box-sizing: border-box; font-size: 16px; outline: none; transition: 0.3s; }
+        #modSearch:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
 
-        .section-title { border-left: 4px solid #ffd700; padding-left: 10px; margin: 30px 0 15px; color: #ffd700; text-transform: uppercase; font-size: 18px; display: flex; justify-content: space-between; align-items: center; }
-        .mod-count { font-size: 12px; background: #1e3a5f; padding: 2px 8px; border-radius: 10px; color: #fff; }
+        /* Section Titles */
+        .section-title { border-left: 4px solid var(--primary); padding-left: 12px; margin: 35px 0 15px; color: var(--primary); text-transform: uppercase; font-size: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .mod-count { font-size: 11px; background: var(--accent); padding: 2px 8px; border-radius: 20px; color: #fff; }
 
-        .mod-card { background: #111b2d; border: 1px solid #1e3a5f; border-radius: 12px; margin-bottom: 20px; padding: 15px; transition: 0.3s; }
-        .mod-card:hover { border-color: #ffd700; }
+        /* Cards & Buttons */
+        .mod-card { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 15px; margin-bottom: 20px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; }
+        .mod-card:hover { transform: translateY(-3px); border-color: var(--primary); }
         
-        .dl-btn { position: relative; display: flex; align-items: center; justify-content: center; background: #ffd700; color: #000; height: 44px; text-decoration: none; font-weight: bold; border-radius: 6px; text-transform: uppercase; font-size: 13px; margin-bottom: 8px; transition: 0.3s; overflow: hidden; cursor: pointer; border: none; width: 100%; }
-        .dl-btn:active { transform: scale(0.98); }
-        
+        .dl-btn { display: flex; align-items: center; justify-content: center; background: var(--primary); color: #000; height: 48px; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; font-size: 14px; margin-top: 10px; transition: 0.3s; border: none; width: 100%; cursor: pointer; }
+        .dl-btn:active { transform: scale(0.97); }
+
+        /* Animation & Loading */
         .spinner { display: none; width: 18px; height: 18px; border: 3px solid rgba(0,0,0,0.2); border-radius: 50%; border-top-color: #000; animation: spin 1s linear infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        .dl-btn.counting { background: #555 !important; color: #fff !important; cursor: not-allowed; }
+        .dl-btn.counting { background: #444 !important; color: #fff !important; cursor: not-allowed; }
         .dl-btn.counting .spinner { display: inline-block; }
 
-        /* NEW: Back to Top Button */
-        #backToTop { position: fixed; bottom: 20px; right: 20px; background: #ffd700; color: #000; width: 40px; height: 40px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; z-index: 1000; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        /* Back to Top */
+        #backToTop { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: bold; z-index: 1000; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
 
-        .footer { text-align: center; color: #444; font-size: 11px; margin-top: 40px; }
+        .footer { text-align: center; color: #555; font-size: 11px; margin-top: 50px; padding: 20px; }
     </style>
 </head>
 <body>
@@ -53,37 +57,38 @@
     <button id="backToTop" onclick="window.scrollTo(0,0)">↑</button>
 
     <div class="header">
-        <h1>Bob Kelvin Site</h1>
+        <h1>BOB KELVIN VAULT</h1>
         <div class="nav-links">
-            <a href="#latest">Latest</a>
-            <a href="#submit-section">Submit</a> 
-            <a href="#community-vault">Vault</a>
-            <a href="#contact">Contact</a>
+            <a href="#latest">MODS</a>
+            <a href="#submit-section">UPLOAD</a> 
+            <a href="#contact">SOCIAL</a>
         </div>
     </div>
 
     <div class="container">
+        
         <div class="search-container">
-            <input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search all mods...">
+            <input type="text" id="modSearch" onkeyup="searchMods()" placeholder="Search WR3D Mods...">
         </div>
 
-        <div id="latest" class="section-title">Official Releases</div>
-        <div class="mod-card searchable">
-            <span style="font-weight:bold; font-size: 16px;">WR3D 2k26 DOPE V1 BY BOB KELVIN</span>
-            <p style="color:#b0c4de; font-size:13px;">The flagship mod. New rosters and 4K textures.</p>
-            
+        <div class="section-title">⭐ Featured Release</div>
+        <div class="mod-card searchable" style="border: 2px solid var(--primary); background: linear-gradient(to bottom, #111b2d, #1e3a5f);">
+            <div style="position: absolute; top: 10px; right: 10px; background: var(--primary); color: #000; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 5px;">TOP RATED</div>
+            <span style="font-weight:900; font-size: 18px; color: var(--primary);">WR3D 2k26 DOPE V1</span>
+            <p style="color:#b0c4de; font-size:13px; line-height: 1.5;">The ultimate mod experience. 4K arena textures, updated 2026 rosters, and realistic physics.</p>
             <a href="https://bobkel.blogspot.com/2026/03/wr3d-2k26-dope-v1-by-bob-kelvin.html" 
-               class="dl-btn" 
-               onclick="startDownloadTimer(event, this, 'Download Latest')">
-                <div class="spinner"></div>
-                <span class="btn-text">Download Latest</span>
+               class="dl-btn" onclick="startDownloadTimer(event, this, 'Download Latest')">
+                <div class="spinner"></div><span class="btn-text">Download Master Mod</span>
             </a>
         </div>
 
-        <div id="submit-section" class="section-title">Submit Your Mod</div>
-        <div class="mod-card">
-            <p style="color:#b0c4de; font-size:13px; margin-bottom:15px;">Want to see your mod here? Submit your link below!</p>
-            <iframe data-tally-src="https://tally.so/embed/ODPGrA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="SUBMIT YOUR MOD"></iframe>
+        <div id="submit-section" class="section-title">Upload Protocol</div>
+        <div class="mod-card" style="border: 2px dashed #ffd700; background: #0a1221; text-align: center;">
+            <p style="color: #ffd700; font-weight: bold; margin-bottom: 5px;">SUBMIT YOUR CREATION</p>
+            <p style="color: #b0c4de; font-size: 12px; margin-bottom: 20px;">Help grow the largest WR3D community vault.</p>
+            <a href="https://tally.so/r/ODPGrA" target="_blank" class="dl-btn" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
+                🚀 START UPLOAD PROCESS
+            </a>
         </div>
 
         <div id="community-vault" class="section-title">
@@ -91,24 +96,27 @@
             <span id="v-count" class="mod-count">0 Mods</span>
         </div>
         <div id="community-mods-container">
-            <p style="text-align:center; color:#ffd700; font-size: 14px;">📡 Syncing live mods...</p>
+            <p style="text-align:center; color:var(--primary); font-size: 14px;">📡 Syncing live mods...</p>
         </div>
 
-        <div id="legacy" class="section-title">Socials</div>
-        <div id="contact" class="mod-card" style="background: #000;">
-            <a href="https://youtube.com/@bob445" class="dl-btn" style="background:#ff0000; color:white;">YouTube</a>
-            <a href="https://wa.me/2349133269825" class="dl-btn" style="background:#25D366; color:white;">WhatsApp</a>
+        <div id="contact" class="section-title">Connect</div>
+        <div class="mod-card" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <a href="https://youtube.com/@bob445" class="dl-btn" style="background:#ff0000; color:white; margin:0;">YouTube</a>
+            <a href="https://wa.me/2349133269825" class="dl-btn" style="background:#25D366; color:white; margin:0;">WhatsApp</a>
         </div>
 
-        <div class="footer">Developed by Bob Kelvin © 2026</div>
+        <div class="footer">
+            DEVELOPED BY BOB KELVIN © 2026<br>Lagos, Nigeria
+        </div>
     </div>
 
     <script>
-        // Back to Top Logic
+        // UX: Show/Hide Back to Top
         window.onscroll = function() {
             document.getElementById("backToTop").style.display = (window.scrollY > 300) ? "flex" : "none";
         };
 
+        // Professional Download Timer
         function startDownloadTimer(event, element, originalText) {
             event.preventDefault();
             const btnText = element.querySelector('.btn-text');
@@ -120,7 +128,7 @@
             
             const timer = setInterval(() => {
                 timeLeft--;
-                btnText.innerText = `Please wait... ${timeLeft}s`;
+                btnText.innerText = `Preparing... ${timeLeft}s`;
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     btnText.innerText = "Opening...";
@@ -134,6 +142,7 @@
             }, 1000);
         }
 
+        // Search Engine
         function searchMods() {
             let input = document.getElementById('modSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable');
@@ -142,42 +151,35 @@
             }
         }
 
+        // Live Spreadsheet Sync
         const sheetUrl = "https://docs.google.com/spreadsheets/d/11WHDCH4-iJqEUJp3nHZG2l0MktiFiOi6cRf2juBLdso/export?format=csv";
         
-        fetch(sheetUrl)
-            .then(response => response.text())
-            .then(csvText => {
-                const rows = csvText.split('\n');
-                let html = '';
-                let count = 0;
-                for(let i = 1; i < rows.length; i++) {
-                    let row = rows[i];
-                    if(!row.trim()) continue;
-                    let cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    if(cols.length >= 5) {
-                        count++;
-                        let modName = cols[3].replace(/(^"|"$)/g, '').trim();
-                        let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
-                        html += `
-                        <div class="mod-card searchable" style="border-left: 4px solid #ffd700;">
-                            <span style="font-weight:bold; color: #fff; font-size: 17px; display: block; margin-bottom: 12px;">${modName}</span>
-                            <a href="${modLink}" class="dl-btn" onclick="startDownloadTimer(event, this, 'Community Download')">
-                                <div class="spinner"></div>
-                                <span class="btn-text">Download Community Mod</span>
-                            </a>
-                        </div>
-                        `;
-                    }
+        fetch(sheetUrl).then(r => r.text()).then(csvText => {
+            const rows = csvText.split('\n');
+            let html = '';
+            let count = 0;
+            for(let i = 1; i < rows.length; i++) {
+                let row = rows[i];
+                if(!row.trim()) continue;
+                let cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if(cols.length >= 5) {
+                    count++;
+                    let modName = cols[3].replace(/(^"|"$)/g, '').trim();
+                    let modLink = cols[4].replace(/(^"|"$)/g, '').trim();
+                    html += `
+                    <div class="mod-card searchable" style="border-left: 4px solid var(--primary);">
+                        <span style="font-weight:bold; color: #fff; font-size: 16px;">${modName}</span>
+                        <a href="${modLink}" class="dl-btn" onclick="startDownloadTimer(event, this, 'Community Download')">
+                            <div class="spinner"></div><span class="btn-text">Download Mod</span>
+                        </a>
+                    </div>`;
                 }
-                document.getElementById('community-mods-container').innerHTML = html || '<p style="text-align:center; color:#b0c4de;">No mods in the vault yet.</p>';
-                document.getElementById('v-count').innerText = `${count} Mods`;
-            })
-            .catch(err => {
-                document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Connection Error</p>';
-            });
-
-        // Tally Widget Logic
-        var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+            }
+            document.getElementById('community-mods-container').innerHTML = html || '<p style="text-align:center;">No mods found.</p>';
+            document.getElementById('v-count').innerText = `${count} Mods`;
+        }).catch(() => {
+            document.getElementById('community-mods-container').innerHTML = '<p style="text-align:center; color:red;">Sync Failed</p>';
+        });
     </script>
 </body>
 </html>
